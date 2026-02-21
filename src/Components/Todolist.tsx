@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { BiCheckDouble, BiRefresh, BiTrash, BiReset, BiEdit, BiCheckCircle} from 'react-icons/bi'
 import './todolist.css'
 
+type Todo = {
+  task: string
+  completed: boolean
+}
+
 function Todolist() {
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState<Todo[]>([]);
     const [inputvalue, setInputValue] = useState('')
     const [editIndex, setEditIndex] = useState(-1)
 
@@ -22,7 +27,7 @@ function Todolist() {
         }
     }
 
-    const startEdit =(index) => {
+    const startEdit =(index: number) => {
         setInputValue(todos[index].task)
         setEditIndex(index)
     }
@@ -32,12 +37,12 @@ function Todolist() {
         setEditIndex(-1)
     }
 
-    const removeTodo = (index) => {
+    const removeTodo = (index: number) => {
         const updatedTodos = todos.filter((_,i) => i !== index)
         setTodos(updatedTodos)
     }
 
-    const toggleCompleted = (index) => {
+    const toggleCompleted = (index: number) => {
         const updatedTodos = [...todos]
         updatedTodos[index].completed = !updatedTodos[index].completed
     }
